@@ -27,9 +27,11 @@ var stringifyJSON = function(obj) {
 		var accumString = ""
 		var lastKey = Object.keys(obj).pop()
 		_.each(obj, function(property, key){
-			accumString += stringifyJSON(key) + ":" + stringifyJSON(property)
-			if(key !== lastKey){
-				accumString += ","
+			if(stringifyJSON(property) != ""){
+				accumString += stringifyJSON(key) + ":" + stringifyJSON(property)
+				if(key !== lastKey){
+					accumString += ","
+				}
 			}
 		})
 		return "{" + accumString + "}"
